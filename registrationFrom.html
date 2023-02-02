@@ -1,0 +1,253 @@
+<html>
+
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="registrationFrom.css">
+</head>
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svgjs="http://svgjs.com/svgjs" width="1440" height="560" preserveAspectRatio="none"
+        viewBox="0 0 1440 560">
+        <style>
+            .abc {
+                animation: animation1 17s infinite ease;
+            }
+
+            @keyframes animation1 {
+                0% {
+                    transform: translateX(0) translateZ(0);
+                }
+
+                50% {
+                    transform: translateX(-40%) translateY(50%) translateZ(0) scaleY(0.5);
+                }
+
+                100% {
+                    transform: translateX(0%) translateZ(0);
+                }
+            }
+
+            .ac {
+                animation: animation2 17s infinite ease;
+            }
+
+            @keyframes animation2 {
+                0% {
+                    transform: translateY(-20%) translateX(-45%) translateZ(0) scaleY(1.5);
+                }
+
+                50% {
+                    transform: translateY(-65%) translateX(-5%) translateZ(0) scaleY(1.7) scaleX(0.7);
+                }
+
+                100% {
+                    transform: translateY(-20%) translateX(-45%) translateZ(0) scaleY(1.5);
+                }
+            }
+        </style>
+        <g mask="url(&quot;#SvgjsMask1371&quot;)" fill="none">
+            <rect width="1440" height="560" x="0" y="0" fill="url(#SvgjsLinearGradient1372)"></rect>
+            <path class="abc"
+                d="M 0,84 C 57.6,119.6 172.8,270 288,262 C 403.2,254 460.8,57.8 576,44 C 691.2,30.2 748.8,198.2 864,193 C 979.2,187.8 1036.8,1.4 1152,18 C 1267.2,34.6 1382.4,224.4 1440,276L1440 560L0 560z"
+                fill="#184a7e"></path>
+            <path class="ac"
+                d="M 0,498 C 96,470.2 288,366.8 480,359 C 672,351.2 768,461.6 960,459 C 1152,456.4 1344,368.6 1440,346L1440 560L0 560z"
+                fill="#2264ab"></path>
+        </g>
+        <defs>
+            <mask id="SvgjsMask1371">
+                <rect width="1440" height="560" fill="#ffffff"></rect>
+            </mask>
+            <linearGradient x1="15.28%" y1="-39.29%" x2="84.72%" y2="139.29%" gradientUnits="userSpaceOnUse"
+                id="SvgjsLinearGradient1372">
+                <stop stop-color="#0e2a47" offset="0"></stop>
+                <stop stop-color="rgba(0, 66, 151, 1)" offset="1"></stop>
+            </linearGradient>
+        </defs>
+    </svg>
+    <div id="container">
+        <audio id="vibrate" src="vibrateBeep.mp3"></audio>
+        <div id="regForm">
+            <form action="" onsubmit="return finalValidation()">
+                <center>
+                    <h1>Registration</h1>
+                    <img src="profileIcon.png" id="profilePic" alt="">
+                    <input type="file" name="" id="file" onchange="test()"><br>
+                    <input type="text" name="" id="username" placeholder="Username" onkeyup="validName(this)"><br>
+                    <input type="email" name="" id="email" placeholder="Email"><br>
+                    <input type="password" name="" class="password" id="password" placeholder="Password"
+                        onfocusout="validPassword(this)">
+                    <input type="password" name="" class="password" id="cpassword" placeholder="Confirm Password"
+                        onfocusout="confirm(this)"><br>
+                    <select name="qualification" id="select" onchange="validOption()">
+                        <option value="Select">Select Qualification</option>
+                        <option value="Pg">Pg</option>
+                        <option value="ug">Ug</option>
+                        <option value="phd">Phd</option>
+                    </select><br>
+                    <table id="genderTable">
+                        <tr>
+                            <td class="gender" for="">Male&nbsp;<input type="radio" name="gender" id="male"
+                                    checked>&nbsp;&nbsp;</td>
+                            <td class="gender">Female&nbsp;<input type="radio" name="gender" id="female" checked><br>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="hobbies">Hobbies</div>
+                    <table id="hobbiesTable">
+                        <tr>
+                            <td class="hobbies" for="">Football<input type="checkbox" name="" id=""></td>
+                            &nbsp;&nbsp;&nbsp;<td class="hobbies" for="">Cricket<input type="checkbox" name="" id="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="hobbies" for="">Books<input type="checkbox" name="" id=""></td>&nbsp;&nbsp;&nbsp;
+                            <td class="hobbies" for="">Dance<input type="checkbox" name="" id=""></td>
+                        </tr>
+                        <tr>
+                            <td class="hobbies" for="">Music<input type="checkbox" name="" id=""></td>&nbsp;&nbsp;&nbsp;
+                            <td class="hobbies" for="">Programming<input type="checkbox" name="" id=""></td>
+                        </tr>
+                    </table>
+                    <span id="terms-condition">
+                        <input type="checkbox" name="" id="">
+                        Terms & Conditions
+                    </span>
+                    <input type="submit" name="" id="" value="Submit">
+                </center>
+            </form>
+        </div>
+    </div>
+    <script>
+        var flag = false;
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function wrong(obj) {
+            obj.style.animation = "wrong .5s";
+            obj.style.border = "2px solid #C6011F";
+            obj.style.borderRadius = ".5vw";
+            obj.style.color = "#C6011F";
+            document.getElementById("vibrate").playbackRate = "3";
+            document.getElementById("vibrate").play();
+        }
+
+        function right(obj) {
+            obj.style.border = "2px solid whitesmoke";
+            obj.style.borderRadius = ".5vw";
+            obj.style.animation = "none";
+            obj.style.color = "gray";
+        }
+
+        function test() {
+            arr = document.getElementById("file").value.split("\\");
+            // alert(arr[arr.length - 1]);
+            document.getElementById("profilePic").src = arr[arr.length - 1];
+            document.getElementById("profilePic").style.borderRadius = "50%";
+            flag = true;
+        }
+
+        function validName(obj) {
+            name = obj.value;
+            for (i = 0; i < name.length; i++) {
+                if (!(name.charAt(i) >= 'A' && name.charAt(i) <= 'Z' || name.charAt(i) >= 'a' && name.charAt(i) <= 'z' || name.charAt(i) == " "))
+                    break;
+            }
+            if (i < name.length){
+                wrong(obj);
+                sleep(1000).then(() => { document.getElementById("username").style.animation = "none";});
+            }
+            else if (name == ""){
+                wrong(obj);
+                sleep(1000).then(() => { document.getElementById("username").style.animation = "none";});
+            }
+            else
+                right(obj);
+        }
+
+        function validPassword(obj) {
+            v = (obj.value).trim();
+            // alert(v);
+
+            if (v.length <= 7) {
+                wrong(obj);
+                sleep(1000).then(() => { document.getElementById("password").style.animation = "none"; });
+            }
+            else {
+                charStatus = true;
+                numStatus = true;
+                symbolStatus = true;
+                for (i = 0; i < v.length; i++) {
+                    var ch = v.charAt(i);
+
+                    if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) {
+                        charStatus = false;
+                    }
+                    if (ch >= 0 && ch <= 9) {
+                        numStatus = false;
+                    }
+
+                    if (!((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= 0 && ch <= 9)))
+                        symbolStatus = false;
+
+
+                    if (charStatus == true || numStatus == true || symbolStatus == true) {
+                        wrong(obj);
+
+                        sleep(1000).then(() => { document.getElementById("password").style.animation = "none"; });
+                    }
+                    else {
+                        right(obj);
+                    }
+                }
+            }
+        }
+
+        function confirm(obj) {
+            if (document.getElementById("username").value != obj.value){
+                wrong(obj);
+                sleep(1000).then(() => { document.getElementById("cpassword").style.animation = "none"; });
+            }
+            else if (obj.value == "")
+                wrong(obj);
+            else
+                right(obj);
+        }
+
+        function validEmail(obj) {
+            email = obj.value;
+        }
+
+        function validOption() {
+            obj = document.getElementById("select");
+            if (obj.selectedIndex == 0){
+                wrong(obj);
+                sleep(1000).then(() => { document.getElementById("select").style.animation = "none"; });
+            }
+            else {
+                right(obj);
+                obj.style.color = "white";
+            }
+        }
+
+        function finalValidation() {
+            validName(document.getElementById("username"));
+            validPassword(document.getElementById("password"));
+            confirm(document.getElementById("cpassword"));
+            validOption();
+            profilePic = document.getElementById("profilePic");
+            if (!flag) {
+                profilePic.style.border = "3px solid #C6011F";
+            }
+            else {
+                profilePic.setAttribute("style", "border-color:#FFFFFF;");
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>
